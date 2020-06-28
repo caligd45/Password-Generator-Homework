@@ -7,14 +7,14 @@ var confirmLowercase;
 alpha = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
 number = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 character = ["!", "#", "$", "%", "&", "'", "(", ")", "*", "+", ",", "-", ".", "/", "\:", "\;", " < ", "=", " > ", " ? ", "@", "[", "\\", "]", " ^ ", "_", "`", "{", "|", "}", "~"];
-var choices;
 space = [];
-var toUpperCase = function (x) {
+var choices;
+var toUpper = function (x) {
     return x.toUpperCase();
-}
+};
 alpha2 = alpha.map(toUpper)
 // Assignment Code
-var generateBtn = document.querySelector("#generate");
+var get = document.querySelector("#generate")
 
 get.addEventListener("click", function () {
     ps = generatePassword();
@@ -82,14 +82,23 @@ function generatePassword() {
     else if (confirmLowercase) {
         choices = alpha;
     }
-// Write password to the #password input
-function writePassword() {
-  var password = generatePassword();
-  var passwordText = document.querySelector("#password");
 
-  passwordText.value = password;
+    else if (confirmUppercase) {
+        choices = space.concat(alpha2);
+    };
 
+    var password = [];
+
+    for (var i = 0; i < enter; i++) {
+        var pickChoices = choices[Math.floor(Math.random() * choices.length)];
+        password.push(pickChoices);
+    }
+
+    var ps = password.join("");
+    UserInput(ps);
+    return ps;
 }
 
-// Add event listener to generate button
-generateBtn.addEventListener("click", writePassword);
+function UserInput(ps) {
+    document.getElementById("password").textContent = ps;
+}
