@@ -1,3 +1,8 @@
+var enter;
+var confirmNumber;
+var confirmCharacter;
+var confirmUppercase;
+var confirmLowercase;
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
 
